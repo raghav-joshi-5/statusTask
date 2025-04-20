@@ -1,0 +1,23 @@
+<h3>Passenger Task</h3>
+
+<app-pass-count
+  [totalCount]="passArr.length"
+  [checkIn]="checkinCount"
+></app-pass-count>
+
+<ul class="list-group">
+  <li *ngFor="let pass of passArr" class="list-group-item mb-2">
+    {{ pass.fullname }}
+  </li>
+</ul>
+
+<ng-container *ngIf="passArr.length > 0; else noPass">
+  <app-pass-card
+    *ngFor="let pass of passArr"
+    [passObj]="pass"
+    (sendCount)="getcheckinCount()"
+  ></app-pass-card>
+</ng-container>
+<ng-template #noPass>
+  <p class="alert alert-danger">No Passenger available</p>
+</ng-template>

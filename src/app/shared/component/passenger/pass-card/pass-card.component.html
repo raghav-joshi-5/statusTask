@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md-12 mb-3">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              [value]="passObj.fullname"
+              class="form-control"
+              [disabled]="!isinEditMode"
+              #passName
+            />
+          </mat-form-field>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          Check in Date:
+          <strong>{{
+            (passObj.checkInDate | date) ?? "Not Check In Yet"
+          }}</strong>
+        </p>
+        <p>
+          Children: <strong>{{ passObj.children?.length ?? "0" }}</strong>
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          (click)="onUpdate(passName.value)"
+          mat-raised-button
+          color="primary"
+        >
+          {{ isinEditMode ? "Done" : "Edit" }}
+        </button>
+        <button (click)="onDelete()" mat-raised-button color="warn">
+          Delete
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
